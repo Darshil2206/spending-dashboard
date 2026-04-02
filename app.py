@@ -13,11 +13,10 @@ uploaded_file = st.file_uploader("Upload your expense CSV", type=["csv"])
 if uploaded_file:
     df = pd.read_csv(uploaded_file)
 else:
-    df = pd.read_csv("data/expenses.csv")
+    df = pd.read_csv("data/expenses.csv/expenses.csv")
 
 # Data cleaning
-df['date'] = pd.to_datetime(df['date'])
-
+df['date'] = pd.to_datetime(df['date'], errors='coerce')
 # Sidebar filters
 st.sidebar.header("Filters")
 category_filter = st.sidebar.multiselect(
